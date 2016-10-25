@@ -18,7 +18,7 @@
  */
 
 #import "CDVLocalWebServer.h"
-#import "GCDWebServerPrivate.h"
+#import <GCDWebServer/GCDWebServerPrivate.h>
 #import <Cordova/CDVViewController.h>
 #import <Cordova/NSDictionary+CordovaPreferences.h>
 #import <AssetsLibrary/AssetsLibrary.h>
@@ -72,7 +72,7 @@
         }
     }
 #endif
-    
+
     if (port == 0) {
         // CB-9096 - actually test for an available port, and set it explicitly
         port = [self _availablePort];
@@ -89,7 +89,7 @@
         // add after server is started to get the true port
         [self addFileSystemHandlers:authToken];
         [self addErrorSystemHandler:authToken];
-        
+
         // handlers must be added before server starts
         [self.server startWithPort:port bonjourName:nil];
 
@@ -102,7 +102,7 @@
             NSLog(@"%@", error);
 
             [self addErrorSystemHandler:authToken];
-            
+
             // handlers must be added before server starts
             [self.server startWithPort:port bonjourName:nil];
 
@@ -132,7 +132,7 @@
             return ntohs(sockaddr->sin_port);
         }
     }
-    
+
     return 0;
 }
 
@@ -170,7 +170,7 @@
     if ([self.commandDelegate respondsToSelector:sel]) {
         NSURL* (^urlTransformer)(NSURL*) = ^NSURL* (NSURL* urlToTransform) {
             NSURL* localServerURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:%lu", (unsigned long)weakSelf.server.port]];
-            
+
             NSURL* transformedUrl = urlToTransform;
 
             NSString* localhostUrlString = [NSString stringWithFormat:@"http://localhost:%lu", (unsigned long)[localServerURL.port unsignedIntegerValue]];
