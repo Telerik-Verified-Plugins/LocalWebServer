@@ -38,6 +38,8 @@
 
 @implementation CDVLocalWebServer
 
+NSString *const ServerCreatedNotificationName = @"WKWebView.WebServer.Created";
+
 - (void) pluginInitialize {
 
     BOOL useLocalWebServer = NO;
@@ -81,6 +83,7 @@
     NSString* authToken = [NSString stringWithFormat:@"cdvToken=%@", [[NSProcessInfo processInfo] globallyUniqueString]];
 
     self.server = [[GCDWebServer alloc] init];
+    self.server.delegate = (id<GCDWebServerDelegate>)self;
     [GCDWebServer setLogLevel:kGCDWebServerLoggingLevel_Error];
 
     if (useLocalWebServer) {
@@ -364,5 +367,11 @@
     [self addFileSystemHandler:processRequestBlock basePath:basePath authToken:authToken cacheAge:0];
 }
 
+#pragma mark GCDWebServerDelegate
+
+- (void)webServerDidStart:(GCDWebServer*)server {
+    [NSNotificationCenter.defaultCenter postNotificationName:ServerCreatedNotificationName
+                                                      object:@[self.viewController, self.server]];
+}
 
 @end
