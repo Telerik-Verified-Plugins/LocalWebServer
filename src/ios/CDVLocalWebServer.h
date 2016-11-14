@@ -18,7 +18,7 @@
  */
 
 #import <Cordova/CDVPlugin.h>
-#import "GCDWebServer.h"
+#import <GCDWebServer/GCDWebServer.h>
 
 @interface CDVLocalWebServer : CDVPlugin
 
