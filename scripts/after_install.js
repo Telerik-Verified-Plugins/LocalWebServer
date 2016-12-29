@@ -28,9 +28,11 @@ var path = require('path');
 var old_content_src_value;
 
 module.exports = function(context) {
-    var config_xml = path.join(context.opts.projectRoot, 'config.xml');
+    var files =  fs.readdirSync(context.opts.projectRoot);
+    var pathMatcher = /^Cordova(\d+)$/
+    var cordovaFolder = files.find((file) => file.match(pathMatcher));
+    var config_xml = path.join(context.opts.projectRoot, cordovaFolder, 'config.xml');
     var et = context.requireCordovaModule('elementtree');
-
     var data = fs.readFileSync(config_xml).toString();
     var etree = et.parse(data);
 
