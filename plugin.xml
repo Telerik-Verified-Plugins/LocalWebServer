@@ -17,13 +17,13 @@
   specific language governing permissions and limitations
   under the License.
 -->
-<plugin id="cordova-labs-local-webserver" version="2.5.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<plugin id="cordova-labs-local-webserver" version="2.5.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>CordovaLocalWebServer</name>
     <description>Cordova Local Web Server Plugin</description>
     <keywords>cordova,local web server</keywords>
     <repo>https://git-wip-us.apache.org/repos/asf/cordova-plugins.git</repo>
 
-    <dependency id="cordova-plugin-file" url="https://git-wip-us.apache.org/repos/asf/cordova-plugin-file.git" version=">=1.3.4" />
+    <dependency id="cordova-plugin-file" url="https://github.com/apache/cordova-plugin-file.git" commit="db39e7ccab1df556f9bff6ce4e748eac703c41da" />
 
     <engines>
         <engine name="cordova-ios" version=">=4.0.1" />
